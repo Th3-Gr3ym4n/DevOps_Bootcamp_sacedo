@@ -1,9 +1,9 @@
 # DevOps_Bootcamp_lemoncode
  Exercises and labs docs, code and so on!
 
- MODULO (1)
+ ## MODULO (1)
  
- ******* mo1_bash.sh
+ ****** mo1_bash.sh
 
  To execute mo1_bash.sh properly it is mandatory to pass an argument to exec bash. For example ./mo1_bash.sh arg1 arg2 arg 3
 
