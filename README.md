@@ -17,4 +17,11 @@
  
  If you miss to pass any argument then script will back "Introduce texto a buscar"
 
+## MODULO (2)
+
+**** mo2_lemoncode-challenge.sh
+
+Follow previous bash script in order to see exercise process step by step
+
+YOu can also run docker-compose.yml file thus docker command $ docker-compose up in order to see the services running.
 
