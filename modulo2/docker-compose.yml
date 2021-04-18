@@ -1,0 +1,48 @@
+version: '3.3'
+services:
+   mymongodb:
+     image: mongo
+     volumes:
+       - data:/data/db
+     restart: always
+     environment:
+       MONGO_INITDB_ROOT_USERNAME: mongoadmin
+       MONGO_INITDB_ROOT_PASSWORD: secret123
+
+     networks: 
+        - lemoncode-challenge
+     ports:
+        - "27017:27017"
+   dotnetcontainer:
+     depends_on:
+       - mymongodb
+     image: devopsbootcampsacedo
+
+     ports:
+       - "5000:5000"
+     restart: always
+     environment:
+        MONGO_URI: mymongo:27017
+        MONGO_INITDB_ROOT_USERNAME: mongoadmin
+        MONGO_INITDB_ROOT_PASSWORD: secret123
+     networks: 
+       - lemoncode-challenge
+
+   front-node:
+      depends_on:
+        - dotnetcontainer
+      image: frontend
+
+      ports:
+        - "4000:3000"
+      restart: always
+      environment:
+         REACT_APP_API_URL: http://localhost:5000/api/topics
+
+      networks: 
+        - lemoncode-challenge
+
+volumes:
+    data: 
+networks:
+    lemoncode-challenge:
