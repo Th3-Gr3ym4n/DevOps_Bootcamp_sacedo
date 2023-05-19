@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image ''
+        }
+    }
 
     stages {
         stage('Checkout') {
@@ -8,23 +12,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage1('Verify') {
             steps {
-                dir("$WORKSPACE/exercises/jenkins-resources/calculator")
-                sh '''
-                gradlew compileJava
-                              
+                sh ''' 
+                ls -lah
                 '''
+                sh 'printenv | sort'
+
             }
         }
 
-        stage('Tests') {
-            steps {
-                dir("$WORKSPACE/exercises/jenkins-resources/calculator")
-                sh '''
-                gradlew test
-                '''
-            }
-        }
     }
 }
