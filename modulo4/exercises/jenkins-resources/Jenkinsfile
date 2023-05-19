@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage1('Verify') {
+        stage('Verify') {
             steps {
                 sh ''' 
                 ls -lah
