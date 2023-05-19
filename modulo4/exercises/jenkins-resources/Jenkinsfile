@@ -8,15 +8,22 @@ pipeline {
             }
         }
 
-        stage('Compile') {
+        stage('Build') {
             steps {
-                sh './modulo4/exercises/jenkins-resources/calculator/gradlew compileJava'
+                dir("$WORKSPACE/exercises/jenkins-resources/calculator")
+                sh '''
+                gradlew compileJava
+                              
+                '''
             }
         }
 
-        stage('Unit Tests') {
+        stage('Tests') {
             steps {
-                sh './modulo4/exercises/jenkins-resources/calculator/gradlew test'
+                dir("$WORKSPACE/exercises/jenkins-resources/calculator")
+                sh '''
+                gradlew test
+                '''
             }
         }
     }
