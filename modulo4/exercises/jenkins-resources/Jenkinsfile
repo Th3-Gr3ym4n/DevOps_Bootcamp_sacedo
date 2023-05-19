@@ -1,32 +1,37 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'gradle:6.6.1-jre14-openj9'
+        }
+    }
     stages {
         stage('Verify') {
             steps {
-               sh 'java -version'
+               sh '''
+               java -version
+               ls -alh
+               printenv | sort
+               '''
 
             }
-        }
+        }   
         stage('Build') {
             steps {
                 sh '''
-                cd modulo4/exercises/jenkins-resources/calculator
+                cd $WORKSPACE/modulo4/exercises/jenkins-resources/calculator
                 chmod +x gradlew
                 ./gradlew compileJava         
                 '''
             }
         }
-
         stage('Tests') {
             steps {
                 sh '''
-                cd modulo4/exercises/jenkins-resources/calculator
+                cd $WORKSPACE/modulo4/exercises/jenkins-resources/calculator
                 chmod +x gradlew
                 ./gradlew test
                 '''
-            }
+            }    
         }
     }
 }
-
