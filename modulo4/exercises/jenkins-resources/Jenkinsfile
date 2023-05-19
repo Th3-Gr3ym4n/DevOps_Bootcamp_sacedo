@@ -16,7 +16,7 @@ pipeline {
                 sh '''
                 cd modulo4/exercises/jenkins-resources/calculator
                 ls -l
-                gradlew compileJava
+                ./gradlew compileJava
                               
                 '''
             }
