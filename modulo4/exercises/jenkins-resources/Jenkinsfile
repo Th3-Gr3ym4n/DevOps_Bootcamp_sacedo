@@ -4,10 +4,7 @@ pipeline {
     stages {
         stage('Verify') {
             steps {
-                sh ''' 
-                ls -lah
-                '''
-                sh 'printenv | sort'
+               sh 'java -version'
 
             }
         }
@@ -15,10 +12,8 @@ pipeline {
             steps {
                 sh '''
                 cd modulo4/exercises/jenkins-resources/calculator
-                ls -l
                 chmod +x gradlew
-                ./gradlew compileJava
-                              
+                ./gradlew compileJava         
                 '''
             }
         }
@@ -27,7 +22,6 @@ pipeline {
             steps {
                 sh '''
                 cd modulo4/exercises/jenkins-resources/calculator
-                ls -l
                 chmod +x gradlew
                 ./gradlew test
                 '''
