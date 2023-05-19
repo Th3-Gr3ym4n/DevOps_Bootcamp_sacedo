@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Lemoncode/bootcamp-devops-lemoncode.git'
+                git 'https://github.com/Th3-Gr3ym4n/DevOps_Bootcamp_sacedo.git'
             }
         }
 
