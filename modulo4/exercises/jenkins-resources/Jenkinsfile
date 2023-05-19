@@ -13,8 +13,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir("./modulo4/exercises/jenkins-resources/calculator")
                 sh '''
+                cd modulo4/exercises/jenkins-resources/calculator
                 gradlew compileJava
                               
                 '''
@@ -23,8 +23,8 @@ pipeline {
 
         stage('Tests') {
             steps {
-                dir("./modulo4/exercises/jenkins-resources/calculator")
                 sh '''
+                cd modulo4/exercises/jenkins-resources/calculator
                 gradlew test
                 '''
             }
