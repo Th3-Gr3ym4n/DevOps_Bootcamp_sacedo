@@ -11,6 +11,24 @@ pipeline {
 
             }
         }
+        stage('Build') {
+            steps {
+                dir("modulo4/exercises/jenkins-resources/calculator")
+                sh '''
+                gradlew compileJava
+                              
+                '''
+            }
+        }
 
+        stage('Tests') {
+            steps {
+                dir("modulo4/exercises/jenkins-resources/calculator")
+                sh '''
+                gradlew test
+                '''
+            }
+        }
     }
 }
+
