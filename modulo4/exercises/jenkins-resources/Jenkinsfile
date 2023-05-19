@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Th3-Gr3ym4n/DevOps_Bootcamp_sacedo.git'
-            }
-        }
-
         stage('Verify') {
             steps {
                 sh ''' 
