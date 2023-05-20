@@ -39,3 +39,39 @@
 
 
 - **Evidencia 2** - ![](./Assets/jenkins-evidence2.jpg)  
+
+
+# GitHub Actions
+
+## Ejercicio 1. Crea un workflow CI para el proyecto de frontend
+
+Se crea un workflow en el que contruimos el entorno para buildear y testar la app hangman front `cicd.yml` se puede ver en la rama `github-actions`.
+
+- **Evidencia 1** - ![](./Assets/github-evidence1.jpg)
+
+- Problemas surgidos:
+
+    - * intenté añadir un filtro (para que solo se lanzara si la carpeta hangman-front se modificaba), pero es complejo y no se activaba el wf. Tuve que eliminar el filtro.
+    - * Errores con el Path para llegar al jest.js
+
+## Ejercicio 2. Crea un workflow CD para el proyecto de frontend
+
+Se crea un workflow en el que construyo una imagen docker y la pulleamos al ghcr.io [Github Container Registry] `ci-docker.yml` se puede ver en la rama `github-actions`.
+
+- **Evidencia 2** - ![](./Assets/github-evidence2.jpg)
+
+- Problemas surgidos:
+
+    - * Cree de nuevo el entorno para buildear y testar (copy & paste) del yaml anterior.
+    - * Errores con el path "./hangman-front/Dockerfile"
+
+## Ejercicio 3. Crea un workflow que ejecute tests e2e
+
+Se crea un Dockerfile `github/Dockerfile` con la estructura necesaria para instalar npm, build el código y crear la entrada CMD para lanzar el test en un contenedor. 
+
+- **Evidencia 3** - ![](./Assets/github-evidence3.jpg)
+
+- Problemas surgidos:
+
+    - * cambio el docker-compose por docker compose command.
+    - * Errores con el path "./hangman-front/docker-compose.yml"
