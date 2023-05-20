@@ -1,5 +1,5 @@
 FROM node:lts-alpine as build
-
+#Working directory
 WORKDIR /opt/build
 
 ARG API_URL={{API_URL}}
