@@ -2,8 +2,8 @@ name: hangman-frontend CI
 
 on:
   pull_request:
-    paths:
-    - 'hangman-front/**'
+    branches:
+      - main
 
 jobs:
   build:
