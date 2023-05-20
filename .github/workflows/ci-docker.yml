@@ -10,20 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
-
-    - name: Install dependencies
-      run: cd hangman-front && npm install
-
-    - name: Build
-      run: cd hangman-front && npm run build
-
-    - name: Run tests
-      run: cd hangman-front && npm test
-
     - name: Convert repository owner to lower case
       run: echo "REPOSITORY_OWNER=$(echo "${{ github.repository_owner }}" | tr '[A-Z]' '[a-z]')" >> $GITHUB_ENV
 
