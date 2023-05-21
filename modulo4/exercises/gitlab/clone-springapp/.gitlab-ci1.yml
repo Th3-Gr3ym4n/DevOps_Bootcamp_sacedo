@@ -1,0 +1,15 @@
+#método deploy keys
+
+before_script:
+  - 'which ssh-agent || (apk update && apk add openssh-client)'
+  - 'which git || (apk update && apk add git)'
+  - eval $(ssh-agent -s)
+  - echo "$SPRINGAPP_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+clone_repo:
+  script:
+    - ssh-keyscan gitlab.local >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - git clone git@gitlab.local:bootcamp/cicd_springapp.git

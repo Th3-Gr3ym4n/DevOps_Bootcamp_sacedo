@@ -28,11 +28,11 @@ Con estas soluciones, logré desplegar la aplicación TODO en un clúster de Kub
 
 ### Evidencias de la Solución
 
-- **Evidencia 1** - ![Figura 1](./Assets/Starting_tunnel_evidence.jpg)
+- **Evidencia 1** - ![Figura 1](../Assets/Starting_tunnel_evidence.jpg)
 
-- **Evidencia 2** - ![Figura 2](./Assets/LoadBalancer_evidence.jpg)
+- **Evidencia 2** - ![Figura 2](../Assets/LoadBalancer_evidence.jpg)
 
-- **Evidencia 3** - ![Figura 3](./Assets/localhost_evidence.jpg)
+- **Evidencia 3** - ![Figura 3](../Assets/localhost_evidence.jpg)
 
 
 
