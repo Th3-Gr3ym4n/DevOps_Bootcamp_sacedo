@@ -81,9 +81,9 @@ Se crea un Dockerfile `github/Dockerfile` con la estructura necesaria para insta
     - * Errores con el path "./hangman-front/docker-compose.yml"
 
 
-## Ejercicios GitLab
+# GitLab
 
-### Ejericio 1. CI/CD de una aplicación spring:
+## Ejericio 1. CI/CD de una aplicación spring:
 
 - * Se crea el repo y el proyecto para la app springapp.
 - * Se carga el código fuente usando `git clone git@gitlab.local:bootcamp/cicd_springapp.git` y abriendo VSCode `code .` creando un `git push` a la rama develop.
@@ -117,7 +117,7 @@ build:
 - ![](./Assets/gitlab-evidence1_1.jpg).
 
 
-### Ejericio 2. Crear un usuario nuevo
+## Ejericio 2. Crear un usuario nuevo
 
 - **Guest**
  - * Commit: No
@@ -148,7 +148,7 @@ build:
  - * Acceder a la administración del repo: Si
 
 
-### Ejericio 3. Crear un nuevo repositorio que clone otro proyecto, springapp. 
+## Ejericio 3. Crear un nuevo repositorio que clone otro proyecto, springapp. 
 
 - **Método CI job permissions model:**
 
