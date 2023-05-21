@@ -3,6 +3,8 @@
 
 ## 1) CI/CD de una Java + Gradle:
 
+**NOTA: ir a la rama `developer2`**
+
 -   Checkout: Al configurar un pipeline con SCM, este mismo genera el checkout en el directorio temporal que usa jenkins.
 - * Primer error: Al crear un checkout descargando el repo desde un stage.
         ```pipeline {
@@ -26,6 +28,8 @@
 - **Evidencia 1** - ![](./Assets/jenkins-evidence1.jpg)
 
 ## 2) Modificar la pipeline para que utilice la imagen Docker de Gradle como build runner:
+
+**NOTA: ir a la rama `developer2`**
 
 - Comprobado que los plugins [docker] y [docker-pipeline] están instalados por defecto en Jenkins.
 
@@ -75,3 +79,85 @@ Se crea un Dockerfile `github/Dockerfile` con la estructura necesaria para insta
 
     - * cambio el docker-compose por docker compose command.
     - * Errores con el path "./hangman-front/docker-compose.yml"
+
+
+## Ejercicios GitLab
+
+### Ejericio 1. CI/CD de una aplicación spring:
+
+- * Se crea el repo y el proyecto para la app springapp.
+- * Se carga el código fuente usando `git clone git@gitlab.local:bootcamp/cicd_springapp.git` y abriendo VSCode `code .` creando un `git push` a la rama develop.
+- * Se crea la pipeline ver en el repo springapp/.gitlab-ci.yml.
+
+Errores no sin poder corregir:
+
+- * La compilación ha generado un error: `[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.0.4.RELEASE:repackage (default) on project spring-boot-hello-world: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.0.4.RELEASE:repackage failed: Unable to find main class -> [Help 1]` Que aún buscando como resolver el error, no he podido resolverlo. Por tanto los stages de build, test, docker y deploy no he podido sacarlo:
+
+**Evidencia 1** - ![](./Assets/gitlab-error-evidence1.jpg).
+
+-   * No obstante, con la finalidad de hacer un deployment de una imagen y utilizar el registry de Gitlab, lo hice con la aplicaciçon flaskapp. Usando este código:
+
+```stages:
+  - build
+
+
+build:
+  stage: build
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY/$CI_PROJECT_PATH
+  script:
+    - echo $CI_REGISTRY $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD
+    - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH/flaskapp:$CI_COMMIT_SHA . 
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH/flaskapp:$CI_COMMIT_SHA
+```
+
+**Evidencia 1.1** 
+- ![](./Assets/gitlab-evidence1.jpg).
+
+- ![](./Assets/gitlab-evidence1_1.jpg).
+
+
+### Ejericio 2. Crear un usuario nuevo
+
+- **Guest**
+ - * Commit: No
+ - * Ejecutar pipeline manualmente: NO
+ - * Push and pull del repo: No
+ - * Merge request: No
+ - * Acceder a la administración del repo: No
+
+ - **Reporter**
+ - * Commit: No
+ - * Ejecutar pipeline manualmente: NO
+ - * Push and pull del repo: No
+ - * Merge request: No
+ - * Acceder a la administración del repo: No
+
+  - **developer**
+ - * Commit: Si
+ - * Ejecutar pipeline manualmente: Si
+ - * Push and pull del repo: Si
+ - * Merge request: Si
+ - * Acceder a la administración del repo: No
+
+  - **Maintainer**
+ - * Commit: Si
+ - * Ejecutar pipeline manualmente: Si
+ - * Push and pull del repo: Si
+ - * Merge request: Si
+ - * Acceder a la administración del repo: Si
+
+
+### Ejericio 3. Crear un nuevo repositorio que clone otro proyecto, springapp. 
+
+- **Método CI job permissions model:**
+
+- * ver `.gitlab-ci.yml`
+**Evidencia 3** - ![](./Assets/gitlab-evidence3.jpg).
+
+Si no se es miembro del grupo del repo orígen, dará un error el Job como que las credenciales no las resuelve al no tener acceso al repo. Puede dar lugar a enteder ese error, o que hay un typo en el url del gitlab service. Es el mismo error.
+
+- **Método deploy keys:**
+
+- * ver `.gitlab-ci1.yml`
+**Evidencia 3** - ![](./Assets/gitlab-evidence3_1.jpg).
